@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import {makeStyles} from '@material-ui/core'
 
-function App() {
+const useStyles = makeStyles(theme =>({
+  button: {
+    marginLeft: 20
+  }
+}))
+function App({text, maxLength}) {
+  const classes = useStyles()
+  const [display, setDisplay] = useState(true);
+  if (text === maxLength) {
+    return <p>{ text }</p>;
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {display ? '{text.substr(0,0).trim()}': text}
+      <br/>
+      <div className={classes.button}>
+      {display ? (
+        <button onClick={() => setDisplay(false)}>Hide</button>
+      ) : (
+        <button onClick={() => setDisplay(true)}>Show</button>
+      )}
+      </div>
     </div>
   );
 }
 
-export default App;
+function Show() {
+  return <App text={'React hook'} maxLength={10}></App>;
+}
+export default Show;
