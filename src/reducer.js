@@ -19,7 +19,9 @@ function AppReducer() {
     <div>
       <p>"useReducer demo: " {state.text}</p>
       <div>
-        <button onClick={() => dispatch({ type: "show", text: 'useReducer' })}>Show</button>
+        <button onClick={() => dispatch({ type: "show", text: "useReducer" })}>
+          Show
+        </button>
 
         <button onClick={() => dispatch({ type: "hide" })}>Hide</button>
       </div>
