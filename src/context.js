@@ -7,7 +7,7 @@ const options = {
   }
 };
 const optionContext = React.createContext(options.language);
-function Test() {
+function AppContext() {
   return (
     <div>
       <optionContext.Provider value={options.language}>
@@ -25,4 +25,4 @@ function Option({text}) {
   );
 }
 
-export default Test;
+export default AppContext;

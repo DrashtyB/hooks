@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import AppReducer from "./hook2";
+import AppReducer from "./reducer";
 import { makeStyles } from "@material-ui/core";
-import Test from "./hook3";
+import AppContext from "./context"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,7 +28,7 @@ function App({ text }) {
         )}
       </div>
       <AppReducer/>
-      <Test/>
+      <AppContext/>
     </div>
   );
 }
