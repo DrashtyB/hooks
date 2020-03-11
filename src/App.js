@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import AppReducer from "./reducer";
 import { makeStyles } from "@material-ui/core";
-import AppContext from "./context"
+import AppContext from "./context";
+import Callback from "./callback";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,28 +13,37 @@ const useStyles = makeStyles(theme => ({
 function App({ text }) {
   const classes = useStyles();
   const [display, setDisplay] = useState(true);
+
   useEffect(() => {
-    console.log("useEffect hook");
+    console.log("useEffect onMount");
+  }, []);
+
+  useEffect(() => {
+    console.log("useEffect onUpdate");
   }, [display]);
+  
+  useEffect(() => {
+    console.log("useEffect onUnMount");
+  }, []);
 
   return (
     <div className={classes.root}>
+      <p>"useState & useEffect demo"</p>
       {display ? `${text.substr(0, 0)}` : text}
       <br />
       <div>
-        {display ? (
-          <button onClick={() => setDisplay(false)}>Show</button>
-        ) : (
-          <button onClick={() => setDisplay(true)}>Hide</button>
-        )}
+        <button onClick={() => setDisplay(!display)}>
+          {display ? "Show" : "Hide"}
+        </button>
       </div>
-      <AppReducer/>
-      <AppContext/>
+      <AppReducer />
+      <AppContext />
+      <Callback />
     </div>
   );
 }
 
 function Show() {
-  return <App text={"useState hook"}/>;
+  return <App text={"useState hook"} />;
 }
 export default Show;
