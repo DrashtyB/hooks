@@ -17,9 +17,8 @@ function App({ text }) {
   const [display, setDisplay] = useState(true);
 
   useLayoutEffect(() => {
-    // alert('useLayout')
-    console.log("useLayout", display);
-  });
+    console.log("useLayout:", display);
+  }, [display]);
 
   useEffect(() => {
     console.log("useEffect onMount");
@@ -47,7 +46,7 @@ function App({ text }) {
       <AppContext />
       <Callback />
       <Ref />
-      <Memo/>
+      <Memo />
     </div>
   );
 }
