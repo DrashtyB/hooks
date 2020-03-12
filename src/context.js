@@ -1,27 +1,30 @@
 import React, { useContext } from "react";
 
 const options = {
-  language: {
+  languages: {
     frontend: "frontend",
     backend: "backend"
   }
 };
-const optionContext = React.createContext(options.language);
+const optionContext = React.createContext(options.languages);
+
 function AppContext() {
   return (
     <div>
       <p>"useContext demo"</p>
-      <optionContext.Provider value={options.language}>
-        <Option text={'abc'}/>
+      <optionContext.Provider value={options.languages}>
+        <Option text={"abc"} />
       </optionContext.Provider>
     </div>
   );
 }
-function Option({text}) {
+
+function Option({ text }) {
   const language = useContext(optionContext);
+  
   return (
     <div>
-      <p>{text !== '' ? language.frontend : language.backend}</p>
+      <p>{text !== "" ? language.frontend : language.backend}</p>
     </div>
   );
 }
