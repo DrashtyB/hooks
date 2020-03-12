@@ -18,7 +18,7 @@ function App({ text }) {
 
   useLayoutEffect(() => {
     console.log("useLayout:", display);
-  }, [display]);
+  },[display]);
 
   useEffect(() => {
     console.log("useEffect onMount");
@@ -29,14 +29,15 @@ function App({ text }) {
   }, [display]);
 
   useEffect(() => {
-    console.log("useEffect onUnMount");
+    return () => {
+      console.log("useEffect onUnMount");
+    };
   }, []);
 
   return (
     <div className={classes.root}>
       <p>"useState & useEffect demo"</p>
       {display ? `${text.substr(0, 0)}` : text}
-      <br />
       <div>
         <button onClick={() => setDisplay(!display)}>
           {display ? "Show" : "Hide"}
