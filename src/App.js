@@ -3,8 +3,8 @@ import AppReducer from "./reducer";
 import { makeStyles } from "@material-ui/core";
 import AppContext from "./context";
 import Callback from "./callback";
-import Ref from "./ref";
-import Memo from "./memo";
+import Ref from './ref'
+import Memo from "./usememo";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,8 +46,8 @@ function App({ text }) {
       <AppReducer />
       <AppContext />
       <Callback />
-      <Ref />
-      <Memo />
+      <Ref/>
+      <Memo/>
     </div>
   );
 }
