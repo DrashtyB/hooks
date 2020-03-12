@@ -7,15 +7,15 @@ function Memo(){
         waitSync(18000)
         return(count * 10)
     }
-    const resCount = useMemo(()=> {
+    const memoCount = useMemo(()=> {
         return expFunc(count)
     },[count])
     return(
         <div>
             <p>"useMemo:"</p>
-            Count: {resCount}
+            Count: {memoCount}
             <br/>
-            <input type="text" onChange={e => setCount(e.target.value)} placeholder="Set count"/>
+            <input type="text" onChange={e => setCount(e.target.value)} />
         </div>
     )
 }
