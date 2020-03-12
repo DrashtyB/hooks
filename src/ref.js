@@ -1,25 +1,38 @@
-import React, { useRef, useImperativeHandle } from "react";
+import React, { useRef, useImperativeHandle, forwardRef } from "react";
 
-function Ref(ref) {
-  const refInput = useRef(null);
-  const handleRef = () => {
-    // alert("Ref clicked");
-    const element = refInput.current;
-    console.log("element", element);
-  };
-//   useImperativeHandle(ref, () => ({
-//       focus: () => {
-//           document.title = "useRef"
-//           refInput.current.focus()
-//       }
-//   }))
+function Imperative(props, ref) {
+  const refImperative = useRef();
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      refImperative.current.focus();
+    }
+  }));
+  return <input ref={refImperative} />;
+}
+Imperative = forwardRef(Imperative);
+
+function Ref() {
+  const refInput = useRef();
+  //   const handleRef = () => {
+  //     const element = refInput.current;
+  //     console.log("element:", element);
+  //   };
+
   return (
     <div>
       <p>"useRef demo"</p>
-      <p ref={refInput}>Hello</p>
-      <p ref={refInput}>Hi</p>
-      <button onClick={handleRef}>Ref</button>
+      <Imperative ref={refInput} />
+      {/* <p ref={refInput}>Hello</p>
+      <p ref={refInput}>Hi</p> */}
+      <button
+        onClick={() => {
+          refInput.current.focus();
+        }}
+      >
+        Ref
+      </button>
     </div>
   );
 }
+
 export default Ref;
