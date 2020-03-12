@@ -1,17 +1,17 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback } from "react";
 
 function Callback() {
   const [state, setState] = useState(0);
-  const [val, setValue] = useState('');
+  const [val, setValue] = useState("");
   
   const callbackText = useCallback(() => {
     setValue(val + "!");
-  },[val]);
-  console.log('callBackText', callbackText)
+  }, [val]);
 
   const callbackButton = useCallback(() => {
     setState(state + 1);
   }, [val, state]);
+  console.log("callbackButton:", callbackButton);
 
   return (
     <div>
