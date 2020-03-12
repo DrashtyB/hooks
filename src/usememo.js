@@ -1,14 +1,12 @@
 import React, { useState, useMemo } from 'react'
 
-const waitSync = () => {}
 function Memo(){
     const [count, setCount] = useState(0)
-    const expFunc = (count) => {
-        waitSync(18000)
+    const multiplier = (count) => {
         return(count * 10)
     }
     const memoCount = useMemo(()=> {
-        return expFunc(count)
+        return multiplier(count)
     },[count])
     return(
         <div>
