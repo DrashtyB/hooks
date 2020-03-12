@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import AppReducer from "./reducer";
 import { makeStyles } from "@material-ui/core";
 import AppContext from "./context";
 import Callback from "./callback";
+import Ref from "./ref";
+import Memo from "./memo";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,6 +16,11 @@ function App({ text }) {
   const classes = useStyles();
   const [display, setDisplay] = useState(true);
 
+  useLayoutEffect(() => {
+    // alert('useLayout')
+    console.log("useLayout", display);
+  });
+
   useEffect(() => {
     console.log("useEffect onMount");
   }, []);
@@ -21,7 +28,7 @@ function App({ text }) {
   useEffect(() => {
     console.log("useEffect onUpdate");
   }, [display]);
-  
+
   useEffect(() => {
     console.log("useEffect onUnMount");
   }, []);
@@ -39,6 +46,8 @@ function App({ text }) {
       <AppReducer />
       <AppContext />
       <Callback />
+      <Ref />
+      <Memo/>
     </div>
   );
 }
