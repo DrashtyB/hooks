@@ -1,31 +1,19 @@
-import React, { useState, useMemo } from "react";
+import React, { useCallback, useState, useMemo } from "react";
+
+const Count = (function Count({ count, onClick }) {
+  return <button onClick={onClick}>{count}</button>;
+});
+console.log("count", Count);
 
 function Memo() {
-  const [count1, setCount1] = useState(null);
-  const [count2, setCount2] = useState(null);
-  const multiplier = (count1, count2) => {
-    return count1 * count2;
-  };
-  const memoCount = useMemo(() => {
-    return multiplier(count1, count2);
-  }, [count1, count2]);
-  console.log('memoCount:', memoCount)
+  const [state, setState] = useState(0);
+  const add = useCallback(() => setState(state + 1), [state]);
   return (
     <div>
-      <p>"useMemo:"</p>
-      Count: {memoCount}
-      <br />
-      <input
-        type="text"
-        onChange={e => setCount1(e.target.value)}
-        placeholder="Count 1"
-      />
-      <input
-        type="text"
-        onChange={e => setCount2(e.target.value)}
-        placeholder="Count 2"
-      />
+      <p>"useMemo demo</p>
+      <Count count={state} onClick={add} />
     </div>
   );
 }
-export default Memo;
+
+export default React.memo(Memo);
