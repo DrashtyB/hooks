@@ -6,7 +6,7 @@ import Ref from "./ref";
 import Show from "./state";
 import Effect from "./Effect";
 import TodoReducer from "./TodoReducer";
-import Memo from "./usememo";
+import Memo from "./Memo";
 
 function App() {
   return (
