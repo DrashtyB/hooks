@@ -49,6 +49,7 @@ function Effect() {
         <CardMedia
           component="img"
           image="https://placekitten.com/640/360"
+          alt="Kitten"
           title="placeKitten"
         />
         <CardActions disableSpacing>
