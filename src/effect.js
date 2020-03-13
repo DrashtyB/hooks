@@ -5,55 +5,70 @@ import {
   CardHeader,
   Typography,
   CardContent,
-  IconButton
+  IconButton,
+  CardMedia,
+  CardActions
 } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import TodoReducer from "./TodoReducer";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex'
+    maxWidth: 310,
+    margin: 20
+  },
+  content: {
+    display: "flex"
+  },
+  action: {
+    marginLeft: "auto"
   }
 }));
-
 function Effect() {
   const classes = useStyles();
   const [display, setDisplay] = useState(true);
-
+  
   useLayoutEffect(() => {
-    console.log("useLayoutEffect:", display);
+    console.log("useLayoutEffect called");
   }, [display]);
 
   useEffect(() => {
-    console.log("useEffect onMount");
-  }, []);
-
-  useEffect(() => {
-    console.log("useEffect onUpdate");
-  },[]);
-
-  useEffect(() => {
-    console.log('clean')
+    console.log("useEffect onMount called");
     return () => {
-      console.log("useEffect onUnMount");
+      console.log("useEffect onUnMount called");
     };
   });
 
+  useEffect(() => {
+    console.log("useEffect onUpdate called");
+  }, []);
+
   return (
     <div>
-      <Card>
-        <CardHeader>title="useEffect"</CardHeader>
-        <div className={classes.root}>
-          <CardContent>
-            <Typography>React hooks</Typography>
-            <IconButton onClick={() => setDisplay(!display)}>
-              <ExpandMoreIcon />
-            </IconButton>
-            <CardContent>
-            {display ? "useState, useEffect, useContext" : null}
-            </CardContent>
-          </CardContent>
-        </div>
+      <Card className={classes.root}>
+        <CardHeader title="useEffect" />
+        <CardMedia
+          component="img"
+          image="https://placekitten.com/640/360"
+          title="placeKitten"
+        />
+        <CardActions disableSpacing>
+          <Typography>React hooks</Typography>
+          <IconButton
+            edge="end"
+            onClick={() => setDisplay(!display)}
+            className={classes.action}
+          >
+            <ExpandLessIcon />
+          </IconButton>
+        </CardActions>
       </Card>
+      <Card className={classes.root}>
+        <CardContent>
+          {display ? "useState, useEffect, useContext" : null}
+        </CardContent>
+      </Card>
+      <TodoReducer />
     </div>
   );
 }
