@@ -10,7 +10,6 @@ import {
   CardActions
 } from "@material-ui/core";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import TodoReducer from "./TodoReducer";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -68,7 +67,6 @@ function Effect() {
           {display ? "useState, useEffect, useContext" : null}
         </CardContent>
       </Card>
-      <TodoReducer />
     </div>
   );
 }
