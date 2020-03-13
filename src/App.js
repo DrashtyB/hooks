@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 import AppContext from "./context";
 import Callback from "./callback";
 import Ref from "./ref";
@@ -53,12 +53,6 @@ function App() {
           <Route path="/useLayoutEffect" component={Effect} />
         </Switch>
       </div>
-      {/* <Effect />
-      <AppReducer />
-      <AppContext />
-      <Callback />
-      <Ref />
-      <Memo /> */}
     </Router>
   );
 }
