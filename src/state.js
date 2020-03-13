@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core";
-import AppReducer from "./reducer";
-import AppContext from "./context";
-import Callback from "./callback";
-import Ref from "./ref";
-import Memo from "./usememo";
-import Effect from "./Effect";
-import App from './App'
+
 const useStyles = makeStyles(theme => ({
   root: {
     marginLeft: 20,
@@ -19,8 +13,6 @@ function App1({ text }) {
 
   return (
     <div className={classes.root}>
-      <App/>
-      <hr/>
       <div>
         <p>"useState & useEffect demo"</p>
         {display ? `${text.substr(0, 0)}` : text}
@@ -29,12 +21,6 @@ function App1({ text }) {
           {display ? "Show" : "Hide"}
         </button>
       </div>
-      <Effect />
-      <AppReducer />
-      <AppContext />
-      <Callback />
-      <Ref />
-      <Memo />
     </div>
   );
 }
