@@ -3,15 +3,15 @@ import React, { useState, useCallback } from "react";
 function Callback() {
   const [state, setState] = useState(0);
   const [val, setValue] = useState("");
-  
-  const callbackText = useCallback(() => {
-    setValue(val + "!");
+
+  const callbackText = useCallback((event) => {
+    setValue(event.target.val);
   }, [val]);
 
   const callbackButton = useCallback(() => {
     setState(state + 1);
-  }, [val, state]);
-  console.log("callbackButton:", callbackButton);
+    console.log("callbackButton:", callbackButton);
+  }, [state]);
 
   return (
     <div>
