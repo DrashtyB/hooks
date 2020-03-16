@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import AppContext from "./context";
 import Callback from "./callback";
 import Ref from "./ref";
@@ -7,8 +7,16 @@ import Show from "./state";
 import Effect from "./Effect";
 import TodoReducer from "./TodoReducer";
 import Memo from "./Memo";
+import { makeStyles } from "@material-ui/core";
 
-function App() {
+const useStyles = makeStyles(theme => ({
+  root: {
+    paddingLeft: 25
+  }
+}));
+
+export default function App() {
+  const classes = useStyles();
   return (
     <Router>
       <div>
@@ -41,19 +49,21 @@ function App() {
             <Link to="/useLayoutEffect">useLayoutEffect</Link>
           </li>
         </ul>
-        <Switch>
-          <Route path="/useState" component={Show} />
-          <Route path="/useEffect" component={Effect} />
-          <Route path="/useContext" component={AppContext} />
-          <Route path="/useReducer" component={TodoReducer} />
-          <Route path="/useCallback" component={Callback} />
-          <Route path="/useMemo" component={Memo} />
-          <Route path="/useRef" component={Ref} />
-          <Route path="/useImperativeHandle" component={Ref} />
-          <Route path="/useLayoutEffect" component={Effect} />
-        </Switch>
+        <hr />
+        <div className={classes.root}>
+          <Switch>
+            <Route path="/useState" component={Show} />
+            <Route path="/useEffect" component={Effect} />
+            <Route path="/useContext" component={AppContext} />
+            <Route path="/useReducer" component={TodoReducer} />
+            <Route path="/useCallback" component={Callback} />
+            <Route path="/useMemo" component={Memo} />
+            <Route path="/useRef" component={Ref} />
+            <Route path="/useImperativeHandle" component={Ref} />
+            <Route path="/useLayoutEffect" component={Effect} />
+          </Switch>
+        </div>
       </div>
     </Router>
   );
 }
-export default App;
