@@ -1,29 +1,23 @@
 import React, { useRef, useImperativeHandle, forwardRef } from "react";
 
-function Imperative(props, ref) {
-  const refImperative = useRef();
+let Imperative = (props, ref) => {
+  const refInput = useRef();
+
   useImperativeHandle(ref, () => ({
     focus: () => {
-      refImperative.current.focus();
+      refInput.current.focus();
     }
   }));
-  return <input ref={refImperative} />;
-}
+  return <input ref={refInput} />;
+};
 Imperative = forwardRef(Imperative);
 
-function Ref() {
+export default function Ref() {
   const refInput = useRef();
-  //   const handleRef = () => {
-  //     const element = refInput.current;
-  //     console.log("element:", element);
-  //   };
-
+  console.log('refInput', refInput);
   return (
     <div>
       <p>"useRef demo"</p>
-      <Imperative ref={refInput} />
-      {/* <p ref={refInput}>Hello</p>
-      <p ref={refInput}>Hi</p> */}
       <button
         onClick={() => {
           refInput.current.focus();
@@ -31,8 +25,8 @@ function Ref() {
       >
         Ref
       </button>
+      <br />
+      <Imperative ref={refInput} />
     </div>
   );
 }
-
-export default Ref;
