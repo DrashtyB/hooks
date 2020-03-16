@@ -1,32 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 const options = {
-  languages: {
-    frontend: "frontend",
-    backend: "backend"
-  }
+  frontend: "frontend",
+  backend: "backend"
 };
-const optionContext = React.createContext(options.languages);
+const optionContext = React.createContext(options);
 
-function AppContext() {
+export default function AppContext() {
   return (
     <div>
       <p>"useContext demo"</p>
-      <optionContext.Provider value={options.languages}>
-        <Option text={"abc"} />
+      <optionContext.Provider value={options}>
+        <Option />
       </optionContext.Provider>
     </div>
   );
 }
 
-function Option({ text }) {
+function Option() {
   const language = useContext(optionContext);
-  
+  const [toggle, setToggle] = useState(true);
+
   return (
     <div>
-      <p>{text !== "" ? language.frontend : language.backend}</p>
+      <button onClick={() => setToggle(!toggle)}>Language</button>
+      <p>{toggle ? language.frontend : language.backend}</p>
     </div>
   );
 }
-
-export default AppContext;
