@@ -1,75 +1,108 @@
-import React, { useState, useLayoutEffect, useEffect } from "react";
-import {
-  makeStyles,
-  Card,
-  CardHeader,
-  Typography,
-  CardContent,
-  IconButton,
-  CardMedia,
-  CardActions
-} from "@material-ui/core";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import React, { useEffect, useLayoutEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import { red } from "@material-ui/core/colors";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ShareIcon from "@material-ui/icons/Share";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import More from "./More";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: 310,
-    margin: 20
+    maxWidth: 345
   },
-  content: {
-    display: "flex"
+  media: {
+    height: 0,
+    paddingTop: "56.25%" // 16:9
   },
-  action: {
-    marginLeft: "auto"
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest
+    })
+  },
+  expandOpen: {
+    transform: "rotate(180deg)"
+  },
+  avatar: {
+    backgroundColor: red[500]
   }
 }));
-function Effect() {
+
+export default function Effect() {
   const classes = useStyles();
-  const [display, setDisplay] = useState(true);
-  
-  useLayoutEffect(() => {
-    console.log("useLayoutEffect called");
-  }, [display]);
+  const [expanded, setExpanded] = React.useState(false);
 
   useEffect(() => {
-    console.log("useEffect onMount called");
-    return () => {
-      console.log("useEffect onUnMount called");
-    };
+    console.log("Effect: Component mount/update called");
   });
+  // useEffect(() => {
+  //   console.log("Effect: Component update called");
+  // }, [expanded]);
 
-  useEffect(() => {
-    console.log("useEffect onUpdate called");
-  }, []);
+  useLayoutEffect(() => console.log("LayoutEffect"));
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   return (
-    <div>
-      <Card className={classes.root}>
-        <CardHeader title="useEffect" />
-        <CardMedia
-          component="img"
-          image="https://placekitten.com/640/360"
-          alt="Kitten"
-          title="placeKitten"
-        />
-        <CardActions disableSpacing>
-          <Typography>React hooks</Typography>
-          <IconButton
-            edge="end"
-            onClick={() => setDisplay(!display)}
-            className={classes.action}
-          >
-            <ExpandLessIcon />
+    <Card className={classes.root}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            R
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
           </IconButton>
-        </CardActions>
-      </Card>
-      <Card className={classes.root}>
-        <CardContent>
-          {display ? "useState, useEffect, useContext" : null}
-        </CardContent>
-      </Card>
-    </div>
+        }
+        title="Shrimp and Chorizo Paella"
+        subheader="September 14, 2016"
+      />
+      <CardMedia
+        className={classes.media}
+        image="https://placekitten.com/640/360"
+        title="Paella dish"
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          This impressive paella is a perfect party dish and a fun meal to cook
+          together with your guests. Add 1 cup of frozen peas along with the
+          mussels, if you like.
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
+      </CardActions>
+      {expanded && <More />}
+    </Card>
   );
 }
-
-export default Effect;
