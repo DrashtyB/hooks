@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: 10
   }
 }));
-function App1({ text }) {
+function State({ text }) {
   const classes = useStyles();
   const [display, setDisplay] = useState(true);
 
@@ -24,7 +24,7 @@ function App1({ text }) {
     </div>
   );
 }
-function Show() {
-  return <App1 text={"useState hook"} />;
+
+export default function Show() {
+  return <State text={"useState hook"} />;
 }
-export default Show;
