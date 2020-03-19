@@ -6,7 +6,7 @@ import Ref from "./ref";
 import Show from "./state";
 import Effect from "./Effect";
 import TodoReducer from "./TodoReducer";
-import Memo from "./Memo";
+import Memo from "./memo";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
@@ -20,8 +20,9 @@ export default function App() {
   return (
     <div className={classes.root}>
       <Router>
-        <h3>React Hooks</h3>
+        <h3>Hooks API</h3>
         <ul>
+          <h4>Basic Hooks</h4>
           <li>
             <Link to="/useState">useState</Link>
           </li>
@@ -31,6 +32,7 @@ export default function App() {
           <li>
             <Link to="/useContext">useContext</Link>
           </li>
+          <h4>Additional Hooks</h4>
           <li>
             <Link to="/useReducer">useReducer</Link>
           </li>
