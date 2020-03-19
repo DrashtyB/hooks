@@ -11,15 +11,16 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    paddingLeft: 25
+    paddingLeft: 20
   }
 }));
 
 export default function App() {
   const classes = useStyles();
   return (
-    <Router>
-      <div>
+    <div className={classes.root}>
+      <Router>
+        <h3>React Hooks</h3>
         <ul>
           <li>
             <Link to="/useState">useState</Link>
@@ -50,7 +51,7 @@ export default function App() {
           </li>
         </ul>
         <hr />
-        <div className={classes.root}>
+        <div>
           <Switch>
             <Route path="/useState" component={Show} />
             <Route path="/useEffect" component={Effect} />
@@ -63,7 +64,7 @@ export default function App() {
             <Route path="/useLayoutEffect" component={Effect} />
           </Switch>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
